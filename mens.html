@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mens</title>
+    <style>
+        #navbar{
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(39, 115, 228);
+            padding: 20px 20px;
+            border-radius: 5px;
+        }
+        #navbar>div{
+            color: white;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+        }
+        #container{
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+        }
+        .lower{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .lower > button{
+            border: none;
+            background-color: rgb(39, 115, 228);
+            color: white;
+            line-height: 20px;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+        @media all and (min-width: 80px) and (max-width: 400px) {
+        #container {
+          grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div id="home"><a href="index.html">Home</a></div>
+        <div id="mens"><a href="mens.html">Mens</a></div>
+        <div id="women"><a href="women.html">Women</a></div>
+        <div id="kids"><a href="kids.html">Kids</a></div>
+        <div id="shoes"><a href="shoes.html">Shoes</a></div>
+        <div><a href="cart.html">Go To Cart</a></div>
+    </div>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    var mensData = [
+    {
+      image_url:
+        "https://content.shop4reebok.com/static/Product-EX4296/reebok_EX4296_1.jpg.plp",
+      name: "MEN'S REEBOK RUNNING ROADMAP SHOES",
+      price: 1170,
+      strikedoffprice: 2599,
+    },
+    {
+      image_url:
+        "https://content.shop4reebok.com/static/Product-EX3921/reebok_EX3921_1.jpg.plp",
+      name: "MEN'S REEBOK SWIM ARUBA FLIP SLIPPERS ",
+      price: 699,
+      strikedoffprice: 999,
+    },
+    {
+      image_url:
+        "https://content.shop4reebok.com/static/Product-EX4160/reebok_EX4160_1.jpg.plp",
+      name: " MEN'S REEBOK RUNNING AUSTIN SHOES",
+      price: 945,
+      strikedoffprice: 2099,
+    },
+    {
+      image_url:
+        "https://content.shop4reebok.com/static/Product-FV8798/MEN_SWIM_SLIPPERS_FV8798_1.jpg.plp",
+      name: "MEN'S REEBOK SWIM AVENGER FLIP LP SLIPPERS",
+      price: 399,
+      strikedoffprice: 799,
+    }
+];
+
+var cartData = JSON.parse(localStorage.getItem("cart")) || [];
+mensData.map(function (elem) {
+    var box = document.createElement("div");
+
+    var img = document.createElement("img");
+    img.src = elem.image_url;
+
+    var name = document.createElement("p");
+    name.textContent = elem.name;
+
+    var prCart = document.createElement("div");
+    prCart.setAttribute("class", "lower");
+
+    var price = document.createElement("p");
+    price.innerText = elem.price;
+
+    var adCart = document.createElement("button");
+    adCart.innerText = "Add to Cart"
+    adCart.addEventListener("click", function(){
+        addToCart(elem);
+    })
+
+    prCart.append(price, adCart);
+
+    box.append(img, name, prCart);
+
+    document.querySelector("#container").append(box);
+  });
+  function addToCart(elem) {
+    console.log(elem);
+    cartData.push(elem);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    alert("item added to cart");
+  }
+</script>

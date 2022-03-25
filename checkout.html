@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        #checkpage{
+            width: 40%;
+            margin: auto;
+            text-align: center;
+        }
+        #navbar{
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(39, 115, 228);
+            padding: 20px 20px;
+            border-radius: 5px;
+        }
+        #navbar>div{
+            color: white;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div id="home"><a href="index.html">Home</a></div>
+        <div id="mens"><a href="mens.html">Mens</a></div>
+        <div id="women"><a href="women.html">Women</a></div>
+        <div id="kids"><a href="kids.html">Kids</a></div>
+        <div id="shoes"><a href="shoes.html">Shoes</a></div>
+    </div>
+    <div id="checkpage">
+        <p>Card Number</p>
+        <input id="cardnumber" type="number"><br>
+        <p>CVV</p>
+        <input id="cvv" type="number"><br>
+        <p>Expiry Date</p>
+        <input id="expiry" type="date" min="2022-03-25" max="2025-03-25"><br>
+        <p>Card Holder Name</p>
+        <input id="name" type="text"><br><br>
+        <button id="submit">Make Payment</button>
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector("#submit").addEventListener("click", checkOut);
+
+    function checkOut(){
+        event.preventDefault();
+        var cardNum = document.querySelector("#cardnumber").value;
+        var cvvnumber = document.querySelector("#cvv").value;
+        var expirydate = document.querySelector("#expiry").value;
+        var name= document.querySelector("#name").value;
+        if(cardNum=='' || cvvnumber=='' || expirydate=='' || name==''){
+            alert("Check Details Again");
+        }
+        else{
+            window.location.href="otp.html";
+        }
+    }
+</script>
